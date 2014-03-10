@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sportslab Members</title>	
+<style>
+  table.zebra { cursor: default; }
+  table.zebra { font-size: 14px; font-weight: normal; cursor: default; }
+  table.zebra { border-collapse: collapse; }
+  table.zebra th { background-color: #000; color: #fff; font-weight: bold; }
+  table.zebra th { padding: 3px 10px; text-align: left; }
+  table.zebra td { padding: 3px 10px; text-align: left; }
+  table.zebra td { border-top: 1px solid #fff; border-bottom: 1px solid #fff; }
+  table.zebra tr.odd { background-color: #ddf; color: #000; }
+  table.zebra tr.even { background-color: #eef; color: #000; }
+  table.zebra tr.odd:hover { background-color: #fdf; }
+  table.zebra tr.even:hover { background-color: #fef; }
+  table.zebra tr.odd:hover td:hover { background-color: #ffd; }
+  table.zebra tr.even:hover td:hover { background-color:#ffe; }
+</style>
+<script type="text/javascript">
+  var zebra = (function() {
+     function _paint(table) {
+          if (table != null) {
+             var rows = table.getElementsByTagName('tr');
+             for (var i = 0; i < rows.length; i++) {
+              	rows[i].className = (i % 2) ? 'even' : 'odd';
+             }
+           }
+         };
+      return {
+        paint: function() {
+          var tables = document.getElementsByTagName('table');
+            for (var i = 0; i < tables.length; i++) {
+       		var classes = ' ' + 				
+					tables[i].getAttribute('class') + ' ';
+                if (classes.indexOf(' zebra ') > -1)
+                     _paint(tables[i]);
+                }
+             }
+         };
+       }
+    )();
+        window.onload = zebra.paint;
+</script>
+</head>
+
+<body>
+ <table center>
+   <tr>
+      <td>
+	   <img    
+          src="https://pbs.twimg.com/profile_images/2393081994/8a0ir5seecyleksb6zij.jpeg" alt="" height=103 width=250>      
+         </img>
+      </td>	
+   </tr>
+   <tr>
+	<td> <b>MEMBER LIST </td>
+   </tr>
+</table>
+	<table class="zebra">
+    		<tr>
+       	  <td><b>Name</td>	
+        	  <td><b>Surname</td>
+		  <td><b>Email</td>	
+        	  <td><b>Phone</td>
+    		</tr>
+       {% for member in members%}
+         <tr> 
+           <td>{{ member.name }}</td>
+		<td>{{ member.surname }}</td>
+		<td><a href="mailto:{{ member.email }}">{{ member.email }}</a></td>
+		<td>{{ member.phone }}</td>
+   	   </tr>
+    {% endfor %}
+
+	</table>	
+</body>
+
+</html> 
